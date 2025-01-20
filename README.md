@@ -35,7 +35,23 @@ NLP-Feedback-Analysis/
 │── README.md
 ```
 
-Usage
+Usage:
 Upload student feedback data via the web interface.
 View analysis results including sentiment classification.
 Utilize visualization tools for better insights.
+
+![Home - NLP Feedback Analysis - Google Chrome 20_01_2025 20_45_30](https://github.com/user-attachments/assets/6f22840e-4850-461a-b0ea-f41b3f5a9826)
+
+![Home - NLP Feedback Analysis - Google Chrome 20_01_2025 20_46_10](https://github.com/user-attachments/assets/e7cb757c-6416-41a5-a816-feff3aab4e7e)
+
+![Home - NLP Feedback Analysis - Google Chrome 20_01_2025 20_45_51](https://github.com/user-attachments/assets/1aa83fd5-2a43-4174-9abf-65fd8e5acde2)
+
+![Home - NLP Feedback Analysis - Google Chrome 20_01_2025 20_45_38](https://github.com/user-attachments/assets/c55f5676-2769-4dab-b23d-4ea17155bea6)
+
+![Sentiment Analysis Result - Google Chrome 06_01_2025 23_59_50](https://github.com/user-attachments/assets/6dbecd22-0661-40ad-a40c-f7a6b458abd3)
+
+![Sentiment Analysis Result - Google Chrome 06_01_2025 23_49_59](https://github.com/user-attachments/assets/de7a20d2-969a-4fbe-8340-314d11499526)
+
+![Sentiment Analysis Result - Google Chrome 06_01_2025 23_48_15](https://github.com/user-attachments/assets/9f498994-4494-489e-9e96-5853ee207955)
+
+
