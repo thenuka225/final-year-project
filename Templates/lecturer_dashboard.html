@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Animation for the table */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        table {
+            width: 50%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0; /* Start with hidden opacity */
+            transform: translateY(20px); /* Start slightly lower */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0; /* Start with hidden opacity */
+            transform: translateY(20px); /* Start slightly lower */
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        /* Animation for pie chart */
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+            width: 100%; /* Ensure the container is full width */
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #4CAF50;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #1E8449;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lecturer Dashboard</h1>
+    <h2>Welcome, {{ lecturer_username }}!</h2> <!-- Added this line to display the lecturer's username -->
+    <h2>Sentiment Analysis of Student Reviews</h2>
+
+    <table>
+        <tr>
+            <th>Sentiment</th>
+            <th>Count</th>
+            <th>Percentage</th>
+        </tr>
+        {% for sentiment, percentage in sentiment_percentages.items() %}
+        <tr>
+            <td>{{ sentiment }}</td>
+            <td>{{ sentiment_counts[sentiment] }}</td>
+            <td>{{ percentage | round(2) }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!--//Container for pie chart -->
+    <div class="chart-container">
+        <canvas id="myPieChart" width="300" height="300" style="max-width: 100%; max-height: 100%;"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myPieChart').getContext('2d');
+        const sentimentData = {{ sentiment_percentages | tojson }};  // Pass percentage data from Flask to JavaScript
+
+        // Fade-in effect for table rows
+        const rows = document.querySelectorAll("table tr");
+        rows.forEach((row, index) => {
+            setTimeout(() => {
+                row.style.opacity = 1;
+                row.style.transform = 'translateY(0)';
+            }, index * 300); // Delay for each row
+        });
+
+        const myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(sentimentData),
+                datasets: [{
+                    label: 'Sentiment Analysis',
+                    data: Object.values(sentimentData),
+                    backgroundColor: ['#C9184A', '#FFAA00', '#538D22'],  // Colors for each segment
+                }]
+            },
+            options: {
+                responsive: false, // Set to false to keep the canvas size
+                animations: {
+                    tension: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart',
+                        from: 1,
+                        to: 0,
+                        loop: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Sentiment Distribution'
+                    }
+                }
+            }
+        });
+    </script>
+
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
+
+
+

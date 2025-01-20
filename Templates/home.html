@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - NLP Feedback Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for the body */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        header {
+            background-color: #002F6C;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            animation: slideDown 0.5s ease; /* Slide-down animation */
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            animation: fadeIn 0.5s ease; /* Fade-in animation for header */
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0;
+            background-color: #fff;
+            animation: fadeIn 0.7s ease; /* Fade-in animation for section */
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px; /* Increased max-width for a larger container */
+            background: linear-gradient(135deg, #4f89e7, #ffffff); /* Blue to white gradient */
+            padding: 30px; /* Added padding */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            transition: transform 0.3s ease; /* Smooth transform on hover */
+            animation: bounceIn 0.10s ease; /* Bounce-in animation for container */
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .container:hover {
+            transform: scale(1.02); /* Slightly scale on hover */
+        }
+
+        .content h2 {
+            font-size: 2.2em;
+            color: #002F6C;
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease; /* Fade-in animation for content heading */
+        }
+
+        .content p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-align: left; /* Align text to the left for better readability */
+            animation: fadeIn 0.6s ease; /* Fade-in animation for content paragraph */
+        }
+
+        .cta-buttons {
+            display: flex; /* Use flexbox for horizontal layout */
+            justify-content: center; /* Center the buttons */
+            margin-top: 30px;
+        }
+
+        .cta-buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #00A75C;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transition for background color and transform */
+            animation: popIn 0.5s ease; /* Pop-in animation for buttons */
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .cta-buttons a:hover {
+            background-color: #00884C;
+            transform: translateY(-2px); /* Move button up slightly on hover */
+        }
+
+        footer {
+            background-color: #002F6C;
+            padding: 00px;
+            text-align: center;
+            color: white;
+            margin-top: 120px;
+            animation: fadeIn 0.5s ease; /* Fade-in animation for footer */
+            
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to the NLP Feedback Analysis System</h1>
+</header>
+
+<section>
+    <div class="container"> <!-- Added container div -->
+        <div class="content">
+            <h2>Analyze Student Feedback with NLP</h2>
+            <p>This system uses Natural Language Processing (NLP) to analyze student feedback, offering insights into satisfaction, performance, and key issues. Through sentiment analysis, feedback is categorized as positive, neutral, or negative, helping educators make data-driven decisions to improve learning experiences.</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('student') }}">Submit a Review</a>
+                <a href="{{ url_for('lecturer_login') }}">Lecturer Login</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 NLP Feedback Analysis System</p>
+</footer>
+
+</body>
+</html>

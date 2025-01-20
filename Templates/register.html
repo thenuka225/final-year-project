@@ -1,0 +1,199 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            overflow: hidden;
+            animation: backgroundFade 5s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFade {
+            0% {
+                background-color: #f4f4f4;
+            }
+            50% {
+                background-color: #e0e0e0;
+            }
+            100% {
+                background-color: #f4f4f4;
+            }
+        }
+
+        .register-container {
+            display: flex;
+            width: 70%;
+            max-width: 900px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .right-section {
+            flex: 1;
+            background: linear-gradient(135deg, #28a745, #85e085);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(100px);
+            animation: slideInRight 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .left-section {
+            flex: 1;
+            padding: 40px;
+            opacity: 0;
+            transform: translateX(-100px);
+            animation: slideInLeft 1s ease-out 0.3s forwards;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .login-link {
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .alert.alert-success {
+        color: red; /* Change the text color to red */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <!-- Left Section with Registration Form -->
+        <div class="left-section">
+            <h2>Register as Lecturer</h2>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-success" >
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="CourseCode" required>
+
+                <label for="password">Password:</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    required 
+                    minlength="8" 
+                    title="Password must be at least 8 characters long."
+                >
+                <button type="submit">Register</button>
+            </form>
+
+            <div class="login-link">
+                <p><a href="{{ url_for('lecturer_login') }}">Already have an account? Login here</a></p>
+            </div>
+        </div>
+        <!-- Right Section with Background Caption -->
+        <div class="right-section">
+            <h1>Start Your Journey Here</h1>
+        </div>
+    </div>
+</body>
+</html>
+

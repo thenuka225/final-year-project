@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Simple, light background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .container {
+            display: flex;
+            background: linear-gradient(to right,  #9fa5d5, #e8f5c8); /* Gradient background */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+            width: 70%; /* Covers 70% of the screen */
+            max-width: 1000px;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+        }
+
+        /* Image side */
+        .image-side {
+            width: 50%; /* 50% of container width */
+            height: auto;
+        }
+
+        .image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Make sure the image covers its container */
+            border-radius: 15px 0 0 15px; /* Rounded corners on the left */
+            animation: slideIn 1s ease-out; /* Animation for the image */
+        }
+
+        /* Form side */
+        .form-side {
+            display: flex;
+            flex-direction: column;
+            width: 50%; /* 50% of container width */
+            padding-left: 30px;
+        }
+
+        h1 {
+            color: #003366;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        select, textarea, input[type="submit"] {
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, textarea:focus {
+            border-color: #3498db; /* Blue border on focus */
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+        input[type="submit"] {
+            background-color: #430590; 
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #8d41c7;
+            transform: translateY(-3px); /* Lift effect on hover */
+        }
+
+        /* Efficient animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left side with image -->
+        <div class="image-side">
+            <img src="{{ url_for('static', filename='image.jpg') }}" alt="Image">
+        </div>
+
+        <!-- Right side with form -->
+        <div class="form-side">
+            <form action="{{ url_for('student') }}" method="POST">
+                <h1>Submit Your Review</h1>
+                <label for="lecturer">Select CourseCode:</label>
+                <select name="lecturer_id" id="lecturer" required>
+                    <option value="">--Select CourseCode--</option>
+                    {% for lecturer in lecturers %}
+                    <option value="{{ lecturer.id }}">{{ lecturer.username }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="review">Review:</label>
+                <textarea name="review" id="review" rows="5" required placeholder="We value your opinion! Detailed feedback helps us understand your needs better."></textarea>
+
+                <input type="submit" value="Submit Review">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
